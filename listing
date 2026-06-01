@@ -1,0 +1,31 @@
+wget
+dpkg -i
+apt install -f
+
+apt install apache2 mariadb-server php-fpm
+a2enmod proxy_fcgi
+a2enconf php8.4-fpm
+a2enmod ssl
+
+systemctl restart apache2
+
+testing :
+<?php phpinfo() ?>
+
+mkdir ssl
+cd ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout self.key -out self.crt
+nano /etc/apache2/sites-available/default-ssl.conf
+certificate : crt key : key
+
+a2ensite default-ssl.conf 
+
+
+
+apt install prometheus prometheus-node-exporter (9090)
+
+id 1860
+
+
+Wordpress
+
